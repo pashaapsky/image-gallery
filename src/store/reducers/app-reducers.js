@@ -5,7 +5,6 @@ import {
   REMOVE_LIKE_FROM_PHOTO,
 } from '../actions/app-actions';
 
-
 const defaultState = {
   userInfo: [],
   images: [],
@@ -22,27 +21,9 @@ const appReducer = (state = defaultState, action) => {
 
     case LOAD_IMAGES: {
       const oldImages = state.images;
-      // const newImages = action.payload;
-      // const oldIds = [];
-      // создаем массив с id
-      //
-      // eslint-disable-next-line no-restricted-syntax
-      // for (const x of oldImages) {
-      //   oldIds.push(x.id);
-      // }
-      // отбираем нужные изображения и добавляем в массив
-      // eslint-disable-next-line no-restricted-syntax
-      // for (const x of newImages) {
-      //   if (!oldIds.includes(x.id)) {
-      //     oldImages.push(x);
-      //   }
-      // }
-      //
       const newImages = oldImages.concat(action.payload);
       const newImagesUniq = Array.from(new Set((newImages.map((item) => JSON.stringify(item))))).map((item) => JSON.parse(item));
-      // console.log('oldImages', oldImages);
-      // console.log('newImages', newImages);
-      // console.log('newImageUniq', newImagesUniq);
+
       return {
         ...state,
         images: newImagesUniq,
@@ -50,10 +31,8 @@ const appReducer = (state = defaultState, action) => {
     }
 
     case ADD_LIKE_TO_PHOTO: {
-      // console.log('отработала ADD_LIKE_TO_PHOTO');
-      const images = []; // заготовка для нового массива изображений
-
-      const oldImages = state.images; // старый массив изображений
+      const images = [];
+      const oldImages = state.images;
 
       // меняем поле лайки в изображении
       oldImages.forEach((image) => {
@@ -62,9 +41,8 @@ const appReducer = (state = defaultState, action) => {
         }
         else {
           const newImage = image;
-          // изменяем нужные поля в image
-          newImage.likes = action.payload.photo.likes; // меняем поле likes
-          newImage.liked_by_user = action.payload.photo.liked_by_user; // меняем поле liked_by_user
+          newImage.likes = action.payload.photo.likes;
+          newImage.liked_by_user = action.payload.photo.liked_by_user;
 
           images.push(newImage);
         }
@@ -77,10 +55,8 @@ const appReducer = (state = defaultState, action) => {
     }
 
     case REMOVE_LIKE_FROM_PHOTO: {
-      // console.log('отработала REMOVE_LIKE_FROM_PHOTO');
-      const images = []; // заготовка для нового массива изображений
-
-      const oldImages = state.images; // старый массив изображений
+      const images = [];
+      const oldImages = state.images;
 
       // меняем поле лайки в изображении
       oldImages.forEach((image) => {
@@ -89,9 +65,8 @@ const appReducer = (state = defaultState, action) => {
         }
         else {
           const newImage = image;
-          // изменяем нужные поля в image
-          newImage.likes = action.payload.photo.likes; // меняем поле likes
-          newImage.liked_by_user = action.payload.photo.liked_by_user; // меняем поле liked_by_user
+          newImage.likes = action.payload.photo.likes;
+          newImage.liked_by_user = action.payload.photo.liked_by_user;
 
           images.push(newImage);
         }

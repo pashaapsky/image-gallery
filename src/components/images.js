@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 
-// роутер
 import {
   Route,
   Link,
@@ -21,14 +20,12 @@ import { getImages, getTokens } from '../auth';
 global.fetch = fetch;
 
 const Images = (props) => {
-  // console.log('images props : ', props);
   const {
     state, addLikeToPhoto, removeLikeFromPhoto, images, unsplash, loadImages,
   } = props;
 
   const match = useRouteMatch();
 
-  // постепенная загрузка изображений на странице
   function lazyLoadImages() {
     // eslint-disable-next-line no-unused-vars
     const imageObserver = new IntersectionObserver((entries, imgObserver) => {
@@ -67,19 +64,17 @@ const Images = (props) => {
       };
 
       const observer = new IntersectionObserver(callback);
-      const target = items[items.length - 1]; // Последний элемент
+      const target = items[items.length - 1];
 
       observer.observe(target);
     }
   }
 
-  // при загрузке Images
   useEffect(() => {
     lazyLoadImages();
     loadNewImagesOnScrollEnd();
   });
 
-  // скрытие маски при наводе на картинку
   function onMouseOverFunction(target) {
     const parent = target.closest('.images__content');
     const maskElem = parent.getElementsByClassName('mask')[0];
@@ -92,7 +87,6 @@ const Images = (props) => {
     const parent = target.closest('.images__content');
     const maskElem = parent.getElementsByClassName('mask')[0];
 
-    // скрываем маску
     maskElem.classList.remove('show');
   }
 
@@ -129,15 +123,12 @@ const Images = (props) => {
       // eslint-disable-next-line consistent-return
         .then((res) => {
           if (res.status === 401) {
-            // console.log('Вернулся код 401!', res);
-            // получаем токены заного
             // eslint-disable-next-line no-restricted-globals
             const code = location.search.split('code=')[1];
             // console.log('получаем токены для лайка изображения');
 
             const UnsplashTokenObject = getTokens(code, unsplash);
 
-            // console.log('Устанавливаем токен в приложение!);
             unsplash.auth.setBearerToken(UnsplashTokenObject.accessToken);
             setLikePhotoOnClick(elem, id, unsplash);
           }
@@ -146,7 +137,6 @@ const Images = (props) => {
           }
         })
         .then((res) => {
-          // console.log('Лайкаем фото Image : ', res);
           elem.classList.add('liked');
           addLikeToPhoto(res);
         })
@@ -167,7 +157,6 @@ const Images = (props) => {
 
     if (!mask.classList.contains('like-btn')) {
       bodyParent.classList.add('no-scroll');
-      // bodyParent.style.opacity = 0.5;
     }
   }
 
@@ -260,7 +249,6 @@ const ImageFullView = (props) => {
     let url = {};
 
     images.forEach((image) => {
-      // console.log('id: ',image.id);
       if (image.id === imageId) {
         url = image;
       }
@@ -276,8 +264,6 @@ const ImageFullView = (props) => {
 
   // оставить лайк на фото
   function setLikeBtnClassName(image) {
-    // console.log('image в функции :', image);
-
     if (image.liked_by_user) {
       return 'like-btn liked';
     }

@@ -1,8 +1,6 @@
-// react
 import React from 'react';
 import { connect } from 'react-redux';
 
-// react роутер
 import {
   BrowserRouter as Router,
   Switch,
@@ -13,12 +11,12 @@ import {
 import Unsplash from 'unsplash-js';
 import fetch from 'node-fetch';
 
-// импорт компонентов
+
 import Header from './components/header';
 import Intro from './components/intro';
 import Images from './components/images';
 
-// импорт actions
+
 import {
   setUserInfo, loadImages, addLikeToPhoto, removeLikeFromPhoto,
 } from './store/actions/app-actions';
@@ -80,12 +78,10 @@ class App extends React.Component {
   }
 }
 
-// получаем state в пропсы
 const mapStateToProps = (state) => ({
   state,
 });
 
-// получаем действие в пропсы
 // eslint-disable-next-line react-redux/mapDispatchToProps-prefer-shorthand
 const mapDispatchToProps = (dispatch) => ({
   setUserInfo: (userInfo) => dispatch(setUserInfo(userInfo)),
