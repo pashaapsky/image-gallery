@@ -10,8 +10,8 @@ module.exports = {
 
   // папка куда собираем и название файла
   output: {
-    filename: 'build.js',
-    path: path.resolve(__dirname, 'build'),
+    filename: 'script.js',
+    path: path.resolve(__dirname, 'docs'),
     publicPath: '/',
   },
 
@@ -56,7 +56,6 @@ module.exports = {
           outputPath: 'img',
         },
       },
-
     ],
   },
   plugins: [

@@ -27,9 +27,9 @@ import { auth, getImages } from './auth';
 global.fetch = fetch;
 
 // initialization App
-const APP_ACCESS_KEY = 'HITJRO8JiW_2KYhXik9zsNFQyYdU4-2ICB815VgN8_M';
-const APP_SECRET = 'ZuDrV7PEKdEpX-zy8megWYf03_2GHhFuITvIfsYRgI0';
-const CALLBACK_URL = 'http://localhost:8080/';
+const APP_ACCESS_KEY = '2ScjAOa9_lCVC1c8qrn25ixIgPC5E_5S3BT6u3kEp9A';
+const APP_SECRET = 'ZOq_q-WrpLyOu9mx_x9pYYtOyJklIDSb5G3-Xf9sMEc';
+const CALLBACK_URL = 'https://pashaapsky.github.io/ImageGallery/';
 
 const unsplash = new Unsplash({
   accessKey: APP_ACCESS_KEY,
